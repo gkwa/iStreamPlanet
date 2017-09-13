@@ -109,13 +109,6 @@ function json_from_distributors()
 
 function main()
 {
-	# expect urls on stdin
-	if [ -t 0 ]
-	then
-		usage
-		exit 1
-	fi
-
 	# filter input for urls
 	cat "${1:-/dev/stdin}" | grep -iE 'https?' |
 		while read -r url
