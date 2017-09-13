@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
-
 set -e
-
-TMPDIR=.$0
-trap cleanup EXIT
 
 function usage()
 {
@@ -12,6 +8,9 @@ function usage()
 	echo "echo {playlist url} | $(basename $0)"
 	echo "cat urls.txt | $(basename $0)"
 }
+
+TMPDIR=.$0
+trap cleanup EXIT
 
 function get_id()
 {
