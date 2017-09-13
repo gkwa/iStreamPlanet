@@ -30,13 +30,12 @@ function cleanup()
 function json_from_url()
 {
 	playlist_url="$1"
+	playlist_id="$2"
 
-	get_id $playlist_url
-	
 	local json='UNEXPECTED'
 	read -r -d '' json <<__eof__
     {
-      "id": "$id",
+      "id": "$playlist_id",
       "playlists": [
         {
           "playlist_url": "$playlist_url"
@@ -72,7 +71,7 @@ function json_from_distributor_file()
 		playlist=() 
 		while read -r id url
 		do
-			playlist+=( "$(json_from_url $url)" )
+			playlist+=( "$(json_from_url $url $id)" )
 		done < $TMPDIR/$distributor
 
 		channels=()
