@@ -109,17 +109,22 @@ function json_from_distributors()
 	done
 }
 
-# filter input for urls
-cat "${1:-/dev/stdin}" | grep -iE 'https?' |
-	while read -r url
-	do
-		sort_by_distributor $url
-	done
+function main()
+{
+	# filter input for urls
+	cat "${1:-/dev/stdin}" | grep -iE 'https?' |
+		while read -r url
+		do
+			sort_by_distributor $url
+		done
+	
+	if test ! -d $TMPDIR
+	then
+		usage
+		exit 1
+	fi
 
-if test ! -d $TMPDIR
-then
-	usage
-	exit 1
-fi
+	json_from_distributors
+}
 
-json_from_distributors
+main
