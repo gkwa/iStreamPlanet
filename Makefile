@@ -1,5 +1,13 @@
+part3: part3a part3b part3c part3d part3e
+
 part3a:
 	@cat urls.txt | bash part3.sh
+
+part3e:
+	@bash part3.sh
+
+part3d:
+	@echo '' | bash part3.sh
 
 part3c:
 	@echo 'https://gcs-streams-prod.fubo.tv/FS_Alt_2044/F2044/master.m3u8' | bash part3.sh

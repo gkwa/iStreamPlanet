@@ -5,6 +5,13 @@ set -e
 TMPDIR=.$0
 trap cleanup EXIT
 
+function usage()
+{
+	echo "$(basename $0)" {playlist url}
+	echo "echo {playlist url} | $(basename $0)"
+	echo "cat urls.txt | $(basename $0)"
+}
+
 function get_id()
 {
 	playlist_url="$1"
@@ -94,9 +101,16 @@ __eof__
 
 function main()
 {
+	# expect urls on stdin
+	if [ -t 0 ]
+	then
+		usage
+		exit 1
+	fi
+
 	# filter only for urls
 	cat "${1:-/dev/stdin}" | grep -iE 'https?' |
-		while read url
+		while read -r url
 		do
 			sort_by_distributor $url
 		done
