@@ -71,31 +71,38 @@ function cleanup()
 
 function json_from_distributor_file()
 {
-	# New json for each distributor
-	for distributor in $(ls $TMPDIR)
+	dfile="$1"
+
+	# build list so we can join with ','
+	playlist=()
+	while read -r id url
 	do
-		# build list so we can join with ','
-		playlist=() 
-		while read -r id url
-		do
-			playlist+=( "$(json_from_url $url $id)" )
-		done < $TMPDIR/$distributor
+		playlist+=( "$(json_from_url $url $id)" )
+	done < $dfile
 
-		channels=()
-		SAVE_IFS="$IFS"
-		IFS=","
-		channels+=( "${playlist[*]}" )
-		IFS="$SAVE_IFS"
+	channels=()
+	SAVE_IFS="$IFS"
+	IFS=","
+	channels+=( "${playlist[*]}" )
+	IFS="$SAVE_IFS"
 
-		cat << __eof__ >$distributor.json.tmp
+	cat << __eof__ >$distributor.json.tmp
 {
   "distributor": "$distributor",
   "channels": [ ${channels[*]} ]
 }
 __eof__
-		cat $distributor.json.tmp | jq . >$distributor.json
-		rm -f $distributor.json.tmp
-		cat $distributor.json
+	cat $distributor.json.tmp | jq . >$distributor.json
+	rm -f $distributor.json.tmp
+	cat $distributor.json
+}
+
+function json_from_distributors()
+{
+	# new json file for each distributor
+	for distributor in $(ls $TMPDIR)
+	do
+		json_from_distributor_file $TMPDIR/$distributor
 	done
 }
 
@@ -115,7 +122,7 @@ function main()
 			sort_by_distributor $url
 		done
 
-	json_from_distributor_file
+	json_from_distributors
 }
 
 main
