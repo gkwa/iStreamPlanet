@@ -53,19 +53,6 @@ __eof__
 	echo $json
 }
 
-function sort_by_distributor()
-{
-	playlist_url="$1"
-
-	id='UNEXPECTED'
-
-	get_id $playlist_url	
-	get_distributor $playlist_url
-
- 	mkdir -p $TMPDIR
- 	echo $id $playlist_url >>$TMPDIR/$distributor
-}
-
 function cleanup()
 {
 	rm -rf $TMPDIR
@@ -112,6 +99,19 @@ function json_from_distributors()
 	do
 		json_from_distributor_file $TMPDIR/$distributor
 	done
+}
+
+function sort_by_distributor()
+{
+	playlist_url="$1"
+
+	id='UNEXPECTED'
+
+	get_id $playlist_url
+	get_distributor $playlist_url
+
+	mkdir -p $TMPDIR
+	echo $id $playlist_url >>$TMPDIR/$distributor
 }
 
 function main()
