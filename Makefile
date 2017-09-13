@@ -1,6 +1,9 @@
 part3:
 	@$(MAKE) part2 | bash ./part3.sh
 
+part3_debug:
+	@$(MAKE) part2 | bash -x ./part3.sh
+
 part3a:
 	@cat urls.txt | bash part3.sh
 

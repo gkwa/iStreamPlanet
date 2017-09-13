@@ -124,7 +124,7 @@ function main()
 	fi
 
 	# filter input for urls
-	cat "${1:-/dev/stdin}" | tr -d \" | grep -iE 'https?' |
+	cat "${1:-/dev/stdin}" | grep -iE 'https?' |
 		while read -r url
 		do
 			sort_by_distributor $url
