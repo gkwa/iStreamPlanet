@@ -7,6 +7,7 @@ trap cleanup EXIT
 
 function usage()
 {
+	echo usage examples:
 	echo "$(basename $0)" {playlist url}
 	echo "echo {playlist url} | $(basename $0)"
 	echo "cat urls.txt | $(basename $0)"
@@ -121,6 +122,12 @@ function main()
 		do
 			sort_by_distributor $url
 		done
+	
+	if test ! -d $TMPDIR
+	then
+		usage
+		exit 1
+	fi
 
 	json_from_distributors
 }

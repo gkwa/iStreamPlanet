@@ -1,10 +1,10 @@
+part3a:
+	@cat urls.txt | bash part3.sh
+
 part4a:
 	@cat urls2.txt | bash part3.sh
 
 part3: part3a part3b part3c part3d part3e
-
-part3a:
-	@cat urls.txt | bash part3.sh
 
 part3e:
 	@bash part3.sh
