@@ -58,6 +58,8 @@ function sort_by_distributor()
 {
 	playlist_url="$1"
 
+	id='UNEXPECTED'
+
 	get_id $playlist_url	
 	get_distributor $playlist_url
 
