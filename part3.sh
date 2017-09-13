@@ -108,7 +108,7 @@ function main()
 		exit 1
 	fi
 
-	# filter only for urls
+	# filter input for urls
 	cat "${1:-/dev/stdin}" | grep -iE 'https?' |
 		while read -r url
 		do
