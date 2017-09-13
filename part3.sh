@@ -101,6 +101,12 @@ __eof__
 
 function json_from_distributors()
 {
+	if test ! -d $TMPDIR
+	then
+		usage
+		exit 1
+	fi
+
 	# new json file for each distributor
 	for distributor in $(ls $TMPDIR)
 	do
@@ -117,12 +123,6 @@ function main()
 			sort_by_distributor $url
 		done
 	
-	if test ! -d $TMPDIR
-	then
-		usage
-		exit 1
-	fi
-
 	json_from_distributors
 }
 
