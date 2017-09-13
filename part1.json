@@ -1,0 +1,9 @@
+{
+  "distributor": "fubo",
+  "channels": {
+    "id": "2044",
+    "playlists": {
+      "playlist_url": "https://gcs-streams-prod.fubo.tv/FS_Alt_2044/F2044/master.m3u8"
+    }
+  }
+}
