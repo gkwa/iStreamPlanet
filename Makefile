@@ -1,3 +1,15 @@
+py4:
+	@echo '' | ./part3.py
+
+py3:
+	@echo 'https://gcs-streams-prod.fubo.tv/FS_Alt_2044/F2044/master.m3u8' | ./part3.py
+
+py2:
+	@cat urls2.txt | ./part3.py
+
+py1:
+	@$(MAKE) part2 | ./part3.py
+
 part3:
 	@$(MAKE) part2 | bash ./part3.sh
 
