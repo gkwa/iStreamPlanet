@@ -1,3 +1,9 @@
+part3_py:
+	@$(MAKE) part2 | ./part3.py
+
+part3_bash:
+	@$(MAKE) part2 | ./part3.sh
+
 py4:
 	@echo '' | ./part3.py
 
@@ -10,37 +16,34 @@ py2:
 py1:
 	@$(MAKE) part2 | ./part3.py
 
-part3:
-	@$(MAKE) part2 | bash ./part3.sh
-
 part3a:
-	@cat urls.txt | bash part3.sh
+	@cat urls.txt | ./part3.sh
 
 part4a:
-	@cat urls2.txt | bash part3.sh
+	@cat urls2.txt | ./part3.sh
 
 part3f: part3a part3b part3c part3d part3e
 
 part3e:
-	@bash part3.sh
+	@./part3.sh
 
 part3d:
-	@echo '' | bash part3.sh
+	@echo '' | ./part3.sh
 
 part3c:
-	@echo 'https://gcs-streams-prod.fubo.tv/FS_Alt_2044/F2044/master.m3u8' | bash part3.sh
+	@echo 'https://gcs-streams-prod.fubo.tv/FS_Alt_2044/F2044/master.m3u8' | ./part3.sh
 
 part3b:
-	@echo 'http://gcs-streams-prod.fubo.tv/FS_Alt_2044/F2044/master.m3u8' | bash part3.sh
+	@echo 'http://gcs-streams-prod.fubo.tv/FS_Alt_2044/F2044/master.m3u8' | ./part3.sh
 
 check:
 	@diff -uw fubo.json part2.json
 
 part2:
-	@bash part2.sh part2.json
+	@./part2.sh part2.json
 
 part1:
-	@bash part1.sh part1.json
+	@./part1.sh part1.json
 
 pretty:
 	@cat part2.json | jq . >part2.json.tmp
