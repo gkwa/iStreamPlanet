@@ -1,8 +1,8 @@
 part3_py:
-	@$(MAKE) part2 | ./part3.py
+	@./part2.sh part2.json | ./part3.py
 
 part3_bash:
-	@$(MAKE) part2 | ./part3.sh
+	@./part2.sh part2.json | ./part3.sh
 
 py4:
 	@echo '' | ./part3.py

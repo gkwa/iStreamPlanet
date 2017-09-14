@@ -124,23 +124,18 @@ function main()
 	fi
 
 	# write warning if can't find url
-	cat "${1:-/dev/stdin}" |
+	cat "${1:-/dev/stdin}" | tr -d \" |
 		while read -r line
 		do
 			if ! echo $line | grep -iE 'https?' &>/dev/null
 			then
 				(>&2 echo skipping input [$line].  Can\'t \
 					 find url in this input)
+			else
+				sort_by_distributor $line
 			fi
 		done
 
-	# filter input for urls
-	cat "${1:-/dev/stdin}" | grep -iE 'https?' | tr -d \" |
-		while read -r url
-		do
-			sort_by_distributor $url
-		done
-	
 	json_from_distributors
 }
 
