@@ -123,6 +123,17 @@ function main()
 		exit 1
 	fi
 
+	# write warning if can't find url
+	cat "${1:-/dev/stdin}" |
+		while read -r line
+		do
+			if ! echo $line | grep -iE 'https?' &>/dev/null
+			then
+				(>&2 echo skipping input [$line].  Can\'t \
+					 find url in this input)
+			fi
+		done
+
 	# filter input for urls
 	cat "${1:-/dev/stdin}" | grep -iE 'https?' | tr -d \" |
 		while read -r url
